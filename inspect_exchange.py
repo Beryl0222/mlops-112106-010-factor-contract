@@ -20,14 +20,14 @@ def inspect(path: Path) -> dict:
 
 def validate(data: dict) -> None:
     for factor in data["factors"].values():
-            for block in factor["blocks"]:
-                shape = []
-                for axis, (start, stop) in zip(factor["axes"], block["at"], strict=True):
-                    assert 0 <= start < stop <= data["lengths"][axis]
-                    shape.append(stop - start)
-                for view in ("center", "original"):
-                    if view in block:
-                        assert list(np.shape(block[view])) == shape
+        for block in factor["blocks"]:
+            shape = []
+            for axis, (start, stop) in zip(factor["axes"], block["at"], strict=True):
+                assert 0 <= start < stop <= data["lengths"][axis]
+                shape.append(stop - start)
+            for view in ("center", "original"):
+                if view in block:
+                    assert list(np.shape(block[view])) == shape
 
 
 def main() -> None:
