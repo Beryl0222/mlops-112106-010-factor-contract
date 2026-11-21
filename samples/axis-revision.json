@@ -1,0 +1,277 @@
+{
+  "revision": "p8",
+  "lengths": {
+    "batch": 2,
+    "r0": 3,
+    "r1": 2,
+    "channel": 2,
+    "frequency": 3
+  },
+  "factors": {
+    "input": {
+      "axes": [
+        "r0",
+        "batch"
+      ],
+      "blocks": [
+        {
+          "at": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "center": [
+            [
+              11,
+              4
+            ],
+            [
+              -12,
+              5
+            ]
+          ],
+          "scale": 0.1,
+          "error": 0.08,
+          "original": [
+            [
+              1.06,
+              0.43
+            ],
+            [
+              -1.25,
+              0.53
+            ]
+          ]
+        },
+        {
+          "at": [
+            [
+              2,
+              3
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "zero": true
+        }
+      ]
+    },
+    "coupler": {
+      "axes": [
+        "r1",
+        "r0"
+      ],
+      "blocks": [
+        {
+          "at": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "center": [
+            [
+              11,
+              10,
+              -2
+            ],
+            [
+              10,
+              10,
+              7
+            ]
+          ],
+          "scale": 0.1,
+          "error": 0.06,
+          "original": [
+            [
+              1.06,
+              1.01,
+              -0.17
+            ],
+            [
+              1.01,
+              1.05,
+              0.73
+            ]
+          ]
+        }
+      ]
+    },
+    "channel": {
+      "axes": [
+        "channel",
+        "r1"
+      ],
+      "blocks": [
+        {
+          "at": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "original": [
+            [
+              1,
+              -1
+            ],
+            [
+              0.5,
+              8
+            ]
+          ]
+        }
+      ]
+    },
+    "frequency": {
+      "axes": [
+        "frequency",
+        "r1"
+      ],
+      "blocks": [
+        {
+          "at": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "original": [
+            [
+              0.1,
+              0.3
+            ],
+            [
+              0.2,
+              0.1
+            ]
+          ]
+        },
+        {
+          "at": [
+            [
+              2,
+              3
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          "center": [
+            [
+              1,
+              -2
+            ]
+          ],
+          "scale": 0.1,
+          "error": 0.03,
+          "original": [
+            [
+              0.11,
+              -0.18
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "heads": {
+    "alarm": {
+      "factors": [
+        "input",
+        "coupler",
+        "channel"
+      ],
+      "axes": [
+        "channel",
+        "batch"
+      ],
+      "slices": [
+        {
+          "channel": [
+            0,
+            1
+          ]
+        },
+        {
+          "channel": [
+            1,
+            2
+          ]
+        }
+      ],
+      "error_limit": 0.0001,
+      "dtype": "fp32"
+    },
+    "trend": {
+      "factors": [
+        "input",
+        "coupler",
+        "frequency"
+      ],
+      "axes": [
+        "batch",
+        "frequency"
+      ],
+      "slices": [
+        {
+          "frequency": [
+            0,
+            2
+          ]
+        },
+        {
+          "frequency": [
+            2,
+            3
+          ]
+        }
+      ],
+      "error_limit": 0.025,
+      "dtype": "fp32"
+    }
+  },
+  "timeline": [
+    [
+      "compressed_only"
+    ],
+    [
+      "request",
+      "trend"
+    ],
+    [
+      "request",
+      "alarm"
+    ],
+    [
+      "arrive_original",
+      "frequency"
+    ],
+    [
+      "request",
+      "trend"
+    ]
+  ],
+  "budget_bytes": 262144
+}
