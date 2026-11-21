@@ -10,13 +10,13 @@ from inspect_exchange import inspect
 
 class ExchangeTests(unittest.TestCase):
     def test_scene_is_readable(self):
-        path = Path(__file__).resolve().parent / "samples" / "scene.json"
+        path = Path(__file__).resolve().parents[1] / "samples" / "scene.json"
         result = inspect(path)
         self.assertIn('revision', result["字段"])
         self.assertEqual(result["数值环境"], "2.2.6")
 
     def test_alternate_exchange_is_readable(self):
-        path = Path(__file__).resolve().parent / "samples" / "axis-revision.json"
+        path = Path(__file__).resolve().parents[1] / "samples" / "axis-revision.json"
         result = inspect(path)
         self.assertGreater(result["字节"], 0)
 
